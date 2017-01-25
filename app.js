@@ -9,8 +9,8 @@ var app = express();
 
 var client = new DocumentDBClient(config.endpoint, { "masterKey": config.primaryKey });
 var HttpStatusCodes = { NOTFOUND: 404 };
-var databaseUrl = 'dbs/${config.database.id}';
-var collectionUrl = `${databaseUrl}/colls/${config.collection.id}`;
+var databaseUrl = 'dbs/' + config.database.id;
+var collectionUrl = databaseUrl + '/colls/' + config.collection.id;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -70,7 +70,7 @@ var CreateDbAndCollection = function(callback){
 }
 
 function getDatabase() {
-    console.log(`Getting database:\n${config.database.id}\n`);
+    console.log('Getting database:\n' + config.database.id + '\n');
     return new Promise((resolve, reject) => {
         client.readDatabase(databaseUrl, (err, result) => {
             if (err) {
@@ -90,7 +90,7 @@ function getDatabase() {
 }
 
 function getCollection() {
-    console.log(`Getting collection:\n${config.collection.id}\n`);
+    console.log('Getting collection:\n' + config.collection.id + '\n');
     return new Promise((resolve, reject) => {
         client.readCollection(collectionUrl, (err, result) => {
             if (err) {
@@ -110,7 +110,7 @@ function getCollection() {
 }
 
 function AddDocument(document){
-    let documentUrl = `${collectionUrl}/docs/${document.id}`;
+    let documentUrl = collectionUrl + '/docs/' + document.id;
     client.createDocument(collectionUrl, document, function (err, document) {
         if (err) {
             console.log(err);
