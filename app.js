@@ -62,63 +62,63 @@ var GetMtgContent = function(url, callback){
     });
 }
 
-var CreateDbAndCollection = function(callback){
-    getDatabase()
-    .then(() => getCollection())
-    .then(() => { callback(); })
-    .catch((error) => { exit('Completed with error ${JSON.stringify(error)}') });
-}
+// var CreateDbAndCollection = function(callback){
+//     getDatabase()
+//     .then(() => getCollection())
+//     .then(() => { callback(); })
+//     .catch((error) => { exit('Completed with error ${JSON.stringify(error)}') });
+// }
 
-function getDatabase() {
-    console.log('Getting database:\n' + config.database.id + '\n');
-    return new Promise((resolve, reject) => {
-        client.readDatabase(databaseUrl, (err, result) => {
-            if (err) {
-                if (err.code == HttpStatusCodes.NOTFOUND) {
-                    client.createDatabase(config.database, (err, created) => {
-                        if (err) reject(err)
-                        else resolve(created);
-                    });
-                } else {
-                    reject(err);
-                }
-            } else {
-                resolve(result);
-            }
-        });
-    });
-}
+// function getDatabase() {
+//     console.log('Getting database:\n' + config.database.id + '\n');
+//     return new Promise((resolve, reject) => {
+//         client.readDatabase(databaseUrl, (err, result) => {
+//             if (err) {
+//                 if (err.code == HttpStatusCodes.NOTFOUND) {
+//                     client.createDatabase(config.database, (err, created) => {
+//                         if (err) reject(err)
+//                         else resolve(created);
+//                     });
+//                 } else {
+//                     reject(err);
+//                 }
+//             } else {
+//                 resolve(result);
+//             }
+//         });
+//     });
+// }
 
-function getCollection() {
-    console.log('Getting collection:\n' + config.collection.id + '\n');
-    return new Promise((resolve, reject) => {
-        client.readCollection(collectionUrl, (err, result) => {
-            if (err) {
-                if (err.code == HttpStatusCodes.NOTFOUND) {
-                    client.createCollection(databaseUrl, config.collection, { offerThroughput: 400 }, (err, created) => {
-                        if (err) reject(err)
-                        else resolve(created);
-                    });
-                } else {
-                    reject(err);
-                }
-            } else {
-                resolve(result);
-            }
-        });
-    });
-}
+// function getCollection() {
+//     console.log('Getting collection:\n' + config.collection.id + '\n');
+//     return new Promise((resolve, reject) => {
+//         client.readCollection(collectionUrl, (err, result) => {
+//             if (err) {
+//                 if (err.code == HttpStatusCodes.NOTFOUND) {
+//                     client.createCollection(databaseUrl, config.collection, { offerThroughput: 400 }, (err, created) => {
+//                         if (err) reject(err)
+//                         else resolve(created);
+//                     });
+//                 } else {
+//                     reject(err);
+//                 }
+//             } else {
+//                 resolve(result);
+//             }
+//         });
+//     });
+// }
 
-function AddDocument(document){
-    var documentUrl = collectionUrl + '/docs/' + document.id;
-    client.createDocument(collectionUrl, document, function (err, document) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log('created ' + document.id);
-        }
-    });
-}
+// function AddDocument(document){
+//     var documentUrl = collectionUrl + '/docs/' + document.id;
+//     client.createDocument(collectionUrl, document, function (err, document) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             console.log('created ' + document.id);
+//         }
+//     });
+// }
 
 function GetSets(callback){
     client.queryDocuments(collectionUrl, 'SELECT * FROM Sets f').toArray(function (err, results) {
@@ -136,10 +136,10 @@ function GetSets(callback){
     });
 }
 
-function exit(message) {
-    console.log(message);
-    console.log('Press any key to exit');
-    process.stdin.setRawMode(true);
-    process.stdin.resume();
-    process.stdin.on('data', process.exit.bind(process, 0));
-}
+// function exit(message) {
+//     console.log(message);
+//     console.log('Press any key to exit');
+//     process.stdin.setRawMode(true);
+//     process.stdin.resume();
+//     process.stdin.on('data', process.exit.bind(process, 0));
+// }
