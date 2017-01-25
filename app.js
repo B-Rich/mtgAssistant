@@ -24,13 +24,13 @@ app.route('/sets')
         
     })
     .post(function(req,res){
-        var auth = req.body.auth;
+        let auth = req.body.auth;
         if(auth === '000123'){
-            var setCollection = [];
+            let setCollection = [];
             CreateDbAndCollection(function(){
                 GetMtgContent('https://api.magicthegathering.io/v1/sets',function(d){
-                var sets = JSON.parse(d);
-                var count = sets.sets.length;
+                let sets = JSON.parse(d);
+                let count = sets.sets.length;
                 sets.sets.map(function(set, index){
                     var obj = {
                         "name": set.name,
@@ -110,7 +110,7 @@ function getCollection() {
 }
 
 function AddDocument(document){
-    var documentUrl = collectionUrl + '/docs/' + document.id;
+    let documentUrl = collectionUrl + '/docs/' + document.id;
     client.createDocument(collectionUrl, document, function (err, document) {
         if (err) {
             console.log(err);

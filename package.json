@@ -4,6 +4,7 @@
   "description": "Used to populate documentDB with MTG data (Cards and Sets)",
   "main": "index.js",
   "scripts": {
+    "start": "babel-node --presets es2015 app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -13,6 +14,8 @@
     "body-parser": "^1.16.0",
     "documentdb": "^1.10.1",
     "express": "^4.14.0",
-    "request": "^2.79.0"
+    "request": "^2.79.0",
+    "babel-cli": "^6.0.0",
+    "babel-preset-es2015": "^6.0.0"
   }
 }
