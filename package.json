@@ -1,0 +1,18 @@
+{
+  "name": "mtg-assistant-config",
+  "version": "1.0.0",
+  "description": "Used to populate documentDB with MTG data (Cards and Sets)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.1.4",
+    "body-parser": "^1.16.0",
+    "documentdb": "^1.10.1",
+    "express": "^4.14.0",
+    "request": "^2.79.0"
+  }
+}
