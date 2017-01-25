@@ -48,7 +48,7 @@ app.route('/sets')
         }
     })
 
-app.listen(3000, function() {
+app.listen(80, function() {
     console.log("Shh...I'm listening on port 3000")
 })
 
