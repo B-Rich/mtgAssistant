@@ -9,7 +9,7 @@ var app = express();
 
 var client = new DocumentDBClient(config.endpoint, { "masterKey": config.primaryKey });
 var HttpStatusCodes = { NOTFOUND: 404 };
-var databaseUrl = `dbs/${config.database.id}`;
+var databaseUrl = 'dbs/${config.database.id}';
 var collectionUrl = `${databaseUrl}/colls/${config.collection.id}`;
 
 app.use(bodyParser.urlencoded({ extended: false }));
